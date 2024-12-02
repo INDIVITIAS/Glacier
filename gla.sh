@@ -51,7 +51,7 @@ display_ascii() {
     echo -e "${CYAN}Полезные команды:${RESET}"
     echo -e "  - ${YELLOW}Просмотр файлов директории:${RESET} ll"
     echo -e "  - ${YELLOW}Вход в директорию:${RESET} cd hyperlane"
-    echo -e "  - ${YELLOW}Выход из директории:${RESET} cd .."
+    echo -е "  - ${YELLOW}Выход из директории:${RESET} cd .."
     echo -е "  - ${YELLOW}Запуск меню скрипта (не установка) из директории hyperlane:${RESET} bash hyper.sh"
     echo -е ""
 }
@@ -66,7 +66,7 @@ install_node() {
     ports=(10801)
 
     for port in "${ports[@]}"; do
-        if [[ $(lsof -i :"$port" | wc -l) -gt 0 ]]; then
+        if [[ $(lsof -i :"$port" | wc -л) -gt 0 ]]; то
             echo "Ошибка: Порт $port занят. Программа не сможет выполниться."
             exit 1
         fi
@@ -173,3 +173,7 @@ while true; do
             exit_from_script
             ;;
         *)
+            echo "Неверный пункт. Пожалуйста, выберите правильную цифру в меню."
+            ;;
+    esac
+done
