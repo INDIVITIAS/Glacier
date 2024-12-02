@@ -45,12 +45,12 @@ display_ascii() {
     echo -e ""
     echo -e "${YELLOW}Подписывайтесь на Telegram: https://t.me/CryptalikBTC${RESET}"
     echo -e "${YELLOW}Подписывайтесь на YouTube: https://www.youtube.com/@Cryptalik${RESET}"
-    echo -e "${YELLOW}Здесь про аирдропы и ноды: https://t.me/indivitias${RESET}"
-    echo -e "${YELLOW}Купи мне крипто бутылочку... кефира 😏${RESET} ${MAGENTA} 👉  https://bit.ly/4eBbfIr  👈 ${MAGENTA}"
-    echo -e ""
-    echo -e "${CYAN}Полезные команды:${RESET}"
-    echo -e "  - ${YELLOW}Просмотр файлов директории:${RESET} ll"
-    echo -e "  - ${YELLOW}Вход в директорию:${RESET} cd hyperlane"
+    echo -е "${YELLOW}Здесь про аирдропы и ноды: https://t.me/indivitias${RESET}"
+    echo -е "${YELLOW}Купи мне крипто бутылочку... кефира 😏${RESET} ${MAGENTA} 👉  https://bit.ly/4eBbfIr  👈 ${MAGENTA}"
+    echo -е ""
+    echo -е "${CYAN}Полезные команды:${RESET}"
+    echo -е "  - ${YELLOW}Просмотр файлов директории:${RESET} ll"
+    echo -е "  - ${YELLOW}Вход в директорию:${RESET} cd hyperlane"
     echo -е "  - ${YELLOW}Выход из директории:${RESET} cd .."
     echo -е "  - ${YELLOW}Запуск меню скрипта (не установка) из директории hyperlane:${RESET} bash hyper.sh"
     echo -е ""
@@ -66,7 +66,7 @@ install_node() {
     ports=(10801)
 
     for port in "${ports[@]}"; do
-        if [[ $(lsof -i :"$port" | wc -л) -gt 0 ]]; то
+        if [[ $(lsof -i :"$port" | wc -l) -gt 0 ]]; then
             echo "Ошибка: Порт $port занят. Программа не сможет выполниться."
             exit 1
         fi
