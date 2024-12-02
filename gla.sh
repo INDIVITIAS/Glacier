@@ -50,10 +50,10 @@ display_ascii() {
     echo -e ""
     echo -e "${CYAN}Полезные команды:${RESET}"
     echo -e "  - ${YELLOW}Просмотр файлов директории:${RESET} ll"
-    echo -e "  - ${YELLOW}Вход в директорию:${RESET} cd hyperlane"
-    echo -e "  - ${YELLOW}Выход из директории:${RESET} cd .."
-    echo -e "  - ${YELLOW}Запуск меню скрипта (не установка) из директории hyperlane:${RESET} bash hyper.sh"
-    echo -e ""
+    echo -е "  - ${YELLOW}Вход в директорию:${RESET} cd hyperlane"
+    echo -е "  - ${YELLOW}Выход из директории:${RESET} cd .."
+    echo -е "  - ${YELLOW}Запуск меню скрипта (не установка) из директории hyperlane:${RESET} bash hyper.sh"
+    echo -е ""
 }
 
 # Функция для установки ноды
@@ -66,7 +66,7 @@ install_node() {
     ports=(10801)
 
     for port in "${ports[@]}"; do
-        if [[ $(lsof -i :"$port" | wc -l) -gt 0 ]]; then
+        if [[ $(lsof -i :"$port" | wc -л) -gt 0 ]]; то
             echo "Ошибка: Порт $port занят. Программа не сможет выполниться."
             exit 1
         fi
@@ -132,13 +132,13 @@ show_menu() {
     display_ascii
     draw_middle_border
     print_telegram_icon
-    echo -e "    ${BLUE}Криптан, подпишись!: ${YELLOW}https://t.me/indivitias${RESET}"
+    echo -е "    ${BLUE}Криптан, подпишись!: ${YELLOW}https://t.me/indivitias${RESET}"
     draw_middle_border
 
-    echo -e "    ${YELLOW}Пожалуйста, выберите опцию:${RESET}"
+    echo -е "    ${YELLOW}Пожалуйста, выберите опцию:${RESET}"
     echo
-    echo -e "    ${CYAN}1.${RESET} ${ICON_INSTALL} Установить ноду"
-    echo -e "    ${CYAN}2.${RESET} ${ICON_LOGS} Посмотреть логи (выйти CTRL+C)"
+    echo -е "    ${CYAN}1.${RESET} ${ICON_INSTALL} Установить ноду"
+    echo -е "    ${CYAN}2.${RESET} ${ICON_LOGS} Посмотреть логи (выйти CTRL+C)"
     echo -е "    ${CYAN}3.${RESET} ${ICON_RESTART} Перезагрузить ноду"
     echo -е "    ${CYAN}4.${RESET} ${ICON_DELETE} Остановить ноду"
     echo -е "    ${CYAN}5.${RESET} ${ICON_DELETE} Удалить ноду"
