@@ -82,7 +82,7 @@ install_node() {
         fi
     done
 
-    echo -e "Все порты свободны! Сейчас начнется установка...\n"
+    echo -е "Все порты свободны! Сейчас начнется установка...\n"
 
     sudo apt update -y && sudo apt upgrade -y
     sudo apt-get install nano jq make software-properties-common make gnupg lsb-release ca-certificates curl
@@ -96,7 +96,10 @@ install_node() {
     sudo apt install docker.io -y
 
     read -p "Введите ваш приватный ключ кошелька: " priv_key
-    docker run -d -e PRIVATE_KEY=$priv_key --name glacier-verifier docker.io/glaciernetwork/glacier-verifier:v0.0.2
+    echo "PRIVATE_KEY=$priv_key" > .env
+
+    echo "Запуск docker-compose..."
+    docker-compose up -d
 
     if [ $? -eq 0 ]; then
         echo "Контейнер glacier-verifier успешно запущен."
@@ -113,14 +116,14 @@ check_logs() {
 # Функция для перезагрузки ноды
 restart_node() {
     echo 'Начинаю перезагрузку...'
-    docker restart glacier-verifier
+    docker-compose restart glacier-verifier
     echo 'Нода была перезагружена.'
 }
 
 # Функция для остановки ноды
 stop_node() {
     echo 'Начинаю остановку...'
-    docker stop glacier-verifier
+    docker-compose stop glacier-verifier
     echo 'Нода была остановлена.'
 }
 
@@ -128,9 +131,7 @@ stop_node() {
 delete_node() {
     read -p 'Если уверены удалить ноду, введите любую букву (CTRL+C чтобы выйти): ' checkjust
     echo 'Начинаю удалять ноду...'
-    docker stop glacier-verifier
-    docker kill glacier-verifier
-    docker rm glacier-verifier
+    docker-compose down
     echo 'Нода была удалена.'
 }
 
@@ -146,21 +147,21 @@ show_menu() {
     display_ascii
     draw_middle_border
     print_telegram_icon
-    echo -e "    ${BLUE}Криптан, подпишись!: ${YELLOW}https://t.me/indivitias${RESET}"
+    echo -е "    ${BLUE}Криптан, подпишись!: ${YELLOW}https://t.me/indivitias${RESET}"
     draw_middle_border
 
-    echo -e "    ${YELLOW}Пожалуйста, выберите опцию:${RESET}"
+    echo -е "    ${YELLOW}Пожалуйста, выберите опцию:${RESET}"
     echo
-    echo -e "    ${CYAN}1.${RESET} ${ICON_INSTALL} Установить ноду"
-    echo -e "    ${CYAN}2.${RESET} ${ICON_LOGS} Посмотреть логи (выйти CTRL+C)"
-    echo -e "    ${CYAN}3.${RESET} ${ICON_RESTART} Перезагрузить ноду"
-    echo -e "    ${CYAN}4.${RESET} ${ICON_DELETE} Остановить ноду"
-    echo -e "    ${CYAN}5.${RESET} ${ICON_DELETE} Удалить ноду"
-    echo -e "    ${CYAN}6.${RESET} ${ICON_EXIT} Выйти из скрипта"
+    echo -е "    ${CYAN}1.${RESET} ${ICON_INSTALL} Установить ноду"
+    echo -е "    ${CYAN}2.${RESET} ${ICON_LOGS} Посмотреть логи (выйти CTRL+C)"
+    echo -е "    ${CYAN}3.${RESET} ${ICON_RESTART} Перезагрузить ноду"
+    echo -е "    ${CYAN}4.${RESET} ${ICON_DELETE} Остановить ноду"
+    echo -е "    ${CYAN}5.${RESET} ${ICON_DELETE} Удалить ноду"
+    echo -е "    ${CYAN}6.${RESET} ${ICON_EXIT} Выйти из скрипта"
     draw_bottom_border
-    echo -e "${CYAN}╔══════════════════════════════════════════════════════╗${RESET}"
-    echo -e "${CYAN}║${RESET}              ${YELLOW}Введите свой выбор [1-6]:${RESET}           ${CYAN}║${RESET}"
-    echo -e "${CYAN}╚══════════════════════════════════════════════════════╝${RESET}"
+    echo -е "${CYAN}╔══════════════════════════════════════════════════════╗${RESET}"
+    echo -е "${CYAN}║${RESET}              ${YELLOW}Введите свой выбор [1-6]:${RESET}           ${CYAN}║${RESET}"
+    echo -е "${CYАН}╚══════════════════════════════════════════════════════╝${RESET}"
     read -p " " choice
 }
 
