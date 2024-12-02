@@ -46,7 +46,7 @@ display_ascii() {
     echo -e "${YELLOW}Подписывайтесь на Telegram: https://t.me/CryptalikBTC${RESET}"
     echo -e "${YELLOW}Подписывайтесь на YouTube: https://www.youtube.com/@Cryptalik${RESET}"
     echo -e "${YELLOW}Здесь про аирдропы и ноды: https://t.me/indivitias${RESET}"
-    echo -e "${YELLOW}Купи мне крипто бутылочку... ${ICON_KEFIR}кефира 😏${RESET} ${MAGENTA} 👉  https://bit.ly/4eBbfIr  👈 ${MAGENTA}"
+    echo -e "${YELLOW}Купи мне крипто бутылочку... кефира 😏${RESET} ${MAGENTA} 👉  https://bit.ly/4eBbfIr  👈 ${MAGENTA}"
     echo -e ""
     echo -e "${CYAN}Полезные команды:${RESET}"
     echo -e "  - ${YELLOW}Просмотр файлов директории:${RESET} ll"
@@ -56,22 +56,12 @@ display_ascii() {
     echo -e ""
 }
 
-# Функция для получения IP-адреса
-get_ip_address() {
-    ip_address=$(hostname -I | awk '{print $1}')
-    if [[ -z "$ip_address" ]]; then
-        echo -ne "${YELLOW}Не удалось автоматически определить IP-адрес.${RESET}"
-        echo -ne "${YELLOW} Пожалуйста, введите IP-адрес:${RESET} "
-        read ip_address
-    fi
-    echo "$ip_address"
-}
-
 # Функция для установки ноды
 install_node() {
     echo 'Начинаю установку ноды...'
 
-    sudo apt install lsof
+    sudo apt-get update -y
+    sudo apt-get install -y lsof curl nano jq make software-properties-common gnupg lsb-release ca-certificates
 
     ports=(10801)
 
@@ -82,18 +72,13 @@ install_node() {
         fi
     done
 
-    echo -е "Все порты свободны! Сейчас начнется установка...\n"
-
-    sudo apt update -y && sudo apt upgrade -y
-    sudo apt-get install nano jq make software-properties-common make gnupg lsb-release ca-certificates curl
+    echo -e "Все порты свободны! Сейчас начнется установка...\n"
 
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-    sudo apt update -y && sudo apt install -y docker-ce docker-ce-cli containerd.io
-    sudo usermod -aG docker $USER
-    sudo apt install -y docker-buildx-plugin docker-compose-plugin
+    sudo apt-get update -y && sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose
 
-    sudo apt install docker.io -y
+    sudo usermod -aG docker $USER
 
     read -p "Введите ваш приватный ключ кошелька: " priv_key
     echo "PRIVATE_KEY=$priv_key" > .env
@@ -147,13 +132,13 @@ show_menu() {
     display_ascii
     draw_middle_border
     print_telegram_icon
-    echo -е "    ${BLUE}Криптан, подпишись!: ${YELLOW}https://t.me/indivitias${RESET}"
+    echo -e "    ${BLUE}Криптан, подпишись!: ${YELLOW}https://t.me/indivitias${RESET}"
     draw_middle_border
 
-    echo -е "    ${YELLOW}Пожалуйста, выберите опцию:${RESET}"
+    echo -e "    ${YELLOW}Пожалуйста, выберите опцию:${RESET}"
     echo
-    echo -е "    ${CYAN}1.${RESET} ${ICON_INSTALL} Установить ноду"
-    echo -е "    ${CYAN}2.${RESET} ${ICON_LOGS} Посмотреть логи (выйти CTRL+C)"
+    echo -e "    ${CYAN}1.${RESET} ${ICON_INSTALL} Установить ноду"
+    echo -e "    ${CYAN}2.${RESET} ${ICON_LOGS} Посмотреть логи (выйти CTRL+C)"
     echo -е "    ${CYAN}3.${RESET} ${ICON_RESTART} Перезагрузить ноду"
     echo -е "    ${CYAN}4.${RESET} ${ICON_DELETE} Остановить ноду"
     echo -е "    ${CYAN}5.${RESET} ${ICON_DELETE} Удалить ноду"
@@ -161,7 +146,7 @@ show_menu() {
     draw_bottom_border
     echo -е "${CYAN}╔══════════════════════════════════════════════════════╗${RESET}"
     echo -е "${CYAN}║${RESET}              ${YELLOW}Введите свой выбор [1-6]:${RESET}           ${CYAN}║${RESET}"
-    echo -е "${CYАН}╚══════════════════════════════════════════════════════╝${RESET}"
+    echo -е "${CYAN}╚══════════════════════════════════════════════════════╝${RESET}"
     read -p " " choice
 }
 
