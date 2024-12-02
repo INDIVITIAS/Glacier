@@ -50,8 +50,8 @@ display_ascii() {
     echo -e ""
     echo -e "${CYAN}Полезные команды:${RESET}"
     echo -e "  - ${YELLOW}Просмотр файлов директории:${RESET} ll"
-    echo -е "  - ${YELLOW}Вход в директорию:${RESET} cd hyperlane"
-    echo -е "  - ${YELLOW}Выход из директории:${RESET} cd .."
+    echo -e "  - ${YELLOW}Вход в директорию:${RESET} cd hyperlane"
+    echo -e "  - ${YELLOW}Выход из директории:${RESET} cd .."
     echo -е "  - ${YELLOW}Запуск меню скрипта (не установка) из директории hyperlane:${RESET} bash hyper.sh"
     echo -е ""
 }
@@ -66,13 +66,13 @@ install_node() {
     ports=(10801)
 
     for port in "${ports[@]}"; do
-        if [[ $(lsof -i :"$port" | wc -л) -gt 0 ]]; то
+        if [[ $(lsof -i :"$port" | wc -l) -gt 0 ]]; then
             echo "Ошибка: Порт $port занят. Программа не сможет выполниться."
             exit 1
         fi
     done
 
-    echo -e "Все порты свободны! Сейчас начнется установка...\n"
+    echo -е "Все порты свободны! Сейчас начнется установка...\n"
 
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
@@ -173,7 +173,3 @@ while true; do
             exit_from_script
             ;;
         *)
-            echo "Неверный пункт. Пожалуйста, выберите правильную цифру в меню."
-            ;;
-    esac
-done
