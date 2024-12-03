@@ -25,7 +25,7 @@ draw_top_border() {
 }
 
 draw_middle_border() {
-    echo -е "${CYАН}╠══════════════════════════════════════════════════════════════════════╣${RESET}"
+    echo -e "${CYAN}╠══════════════════════════════════════════════════════════════════════╣${RESET}"
 }
 
 draw_bottom_border() {
@@ -66,7 +66,7 @@ install_node() {
     ports=(10801)
 
     for port in "${ports[@]}"; do
-        if [[ $(lsof -i :"$port" | wc -l) -gt 0 ]]; то
+        if [[ $(lsof -i :"$port" | wc -l) -gt 0 ]]; then
             echo "Ошибка: Порт $port занят. Программа не сможет выполниться."
             exit 1
         fi
@@ -75,7 +75,7 @@ install_node() {
     echo -е "Все порты свободны! Сейчас начнется установка...\n"
 
     # Установка Docker, если не установлен
-    если ! command -v docker &> /dev/null; то
+    if ! command -v docker &> /dev/null; then
         sudo apt-get install -y docker-ce docker-ce-cli containerd.io
         sudo systemctl start docker
         sudo systemctl enable docker
@@ -146,7 +146,7 @@ show_menu() {
     echo -е "    ${YELLOW}Пожалуйста, выберите опцию:${RESET}"
     echo
     echo -е "    ${CYАН}1.${RESET} ${ICON_INSTALL} Установить ноду"
-    echo -е "    ${CYАН}2.${RESET} ${ICON_LOGS} Посмотреть логи (выйти CTRL+C)"
+    echo -е "    ${CYАН}2.${RESET} ${ICON_LOGС} Посмотреть логи (выйти CTRL+C)"
     echo -е "    ${CYАН}3.${RESET} ${ICON_RESTART} Перезагрузить ноду"
     echo -е "    ${CYАН}4.${RESET} ${ICON_DELETE} Остановить ноду"
     echo -е "    ${CYАН}5.${RESET} ${ICON_DELETE} Удалить ноду"
