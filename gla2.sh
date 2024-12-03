@@ -39,21 +39,21 @@ print_telegram_icon() {
 # Логотип и информация
 display_ascii() {
     echo -e "${CYAN}   ____   _  __   ___    ____ _   __   ____ ______   ____   ___    ____${RESET}"
-    echo -е "${CYАН}  /  _/  / |/ /  / _ \\  /  _/| | / /  /  _//_  __/  /  _/  / _ |  / __/${RESET}"
-    echo -е "${CYАН} _/ /   /    /  / // / _/ /  | |/ /  _/ /   / /    _/ /   / __ | _\\ \\  ${RESET}"
-    echo -е "${CYАН}/___/  /_/|_/  /____/ /___/  |___/  /___/  /_/    /___/  /_/ |_|/___/  ${RESET}"
-    echo -е ""
-    echo -е "${YELLOW}Подписывайтесь на Telegram: https://t.me/CryptalikBTC${RESET}"
-    echo -е "${YELLOW}Подписывайтесь на YouTube: https://www.youtube.com/@Cryptalik${RESET}"
-    echo -е "${YELLOW}Здесь про аирдропы и ноды: https://t.me/indivitias${RESET}"
-    echo -е "${YELLOW}Купи мне крипто бутылочку... кефира 😏${RESET} ${MAGENTA} 👉  https://bit.ly/4eBbfIr  👈 ${MAGENTA}"
-    echo -е ""
-    echo -е "${CYАН}Полезные команды:${RESET}"
-    echo -е "  - ${YELLOW}Просмотр файлов директории:${RESET} ll"
-    echo -е "  - ${YELLOW}Вход в директорию:${RESET} cd hyperlane"
-    echo -е "  - ${YELLOW}Выход из директории:${RESET} cd .."
-    echo -е "  - ${YELLOW}Запуск меню скрипта (не установка) из директории hyperlane:${RESET} bash hyper.sh"
-    echo -е ""
+    echo -e "${CYAN}  /  _/  / |/ /  / _ \\  /  _/| | / /  /  _//_  __/  /  _/  / _ |  / __/${RESET}"
+    echo -e "${CYAN} _/ /   /    /  / // / _/ /  | |/ /  _/ /   / /    _/ /   / __ | _\\ \\  ${RESET}"
+    echo -e "${CYAN}/___/  /_/|_/  /____/ /___/  |___/  /___/  /_/    /___/  /_/ |_|/___/  ${RESET}"
+    echo -e ""
+    echo -e "${YELLOW}Подписывайтесь на Telegram: https://t.me/CryptalikBTC${RESET}"
+    echo -e "${YELLOW}Подписывайтесь на YouTube: https://www.youtube.com/@Cryptalik${RESET}"
+    echo -e "${YELLOW}Здесь про аирдропы и ноды: https://t.me/indivitias${RESET}"
+    echo -e "${YELLOW}Купи мне крипто бутылочку... кефира 😏${RESET} ${MAGENTA} 👉  https://bit.ly/4eBbfIr  👈 ${MAGENTA}"
+    echo -e ""
+    echo -e "${CYAN}Полезные команды:${RESET}"
+    echo -e "  - ${YELLOW}Просмотр файлов директории:${RESET} ll"
+    echo -e "  - ${YELLOW}Вход в директорию:${RESET} cd hyperlane"
+    echo -e "  - ${YELLOW}Выход из директории:${RESET} cd .."
+    echo -e "  - ${YELLOW}Запуск меню скрипта (не установка) из директории hyperlane:${RESET} bash hyper.sh"
+    echo -e ""
 }
 
 # Функция для установки ноды
@@ -74,11 +74,12 @@ install_node() {
 
     echo -е "Все порты свободны! Сейчас начнется установка...\n"
 
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-    sudo apt-get update -y && sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose
-
-    sudo usermod -aG docker $USER
+    # Установка Docker, если не установлен
+    if ! command -v docker &> /dev/null; then
+        sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+        sudo systemctl start docker
+        sudo systemctl enable docker
+    fi
 
     # Перезапуск Docker-демона
     sudo systemctl restart docker
@@ -139,21 +140,21 @@ show_menu() {
     display_ascii
     draw_middle_border
     print_telegram_icon
-    echo -е "    ${BLUE}Криптан, подпишись!: ${YELLOW}https://t.me/indivitias${RESET}"
+    echo -e "    ${BLUE}Криптан, подпишись!: ${YELLOW}https://t.me/indivitias${RESET}"
     draw_middle_border
 
-    echo -е "    ${YELLOW}Пожалуйста, выберите опцию:${RESET}"
+    echo -e "    ${YELLOW}Пожалуйста, выберите опцию:${RESET}"
     echo
-    echo -е "    ${CYАН}1.${RESET} ${ICON_INSTALL} Установить ноду"
-    echo -е "    ${CYАН}2.${RESET} ${ICON_LOGS} Посмотреть логи (выйти CTRL+C)"
-    echo -е "    ${CYАН}3.${RESET} ${ICON_RESTART} Перезагрузить ноду"
-    echo -е "    ${CYАН}4.${RESET} ${ICON_DELETE} Остановить ноду"
-    echo -е "    ${CYАН}5.${RESET} ${ICON_DELETE} Удалить ноду"
-    echo -е "    ${CYАН}6.${RESET} ${ICON_EXIT} Выйти из скрипта"
+    echo -e "    ${CYAN}1.${RESET} ${ICON_INSTALL} Установить ноду"
+    echo -e "    ${CYAN}2.${RESET} ${ICON_LOGS} Посмотреть логи (выйти CTRL+C)"
+    echo -e "    ${CYAN}3.${RESET} ${ICON_RESTART} Перезагрузить ноду"
+    echo -e "    ${CYAN}4.${RESET} ${ICON_DELETE} Остановить ноду"
+    echo -e "    ${CYAN}5.${RESET} ${ICON_DELETE} Удалить ноду"
+    echo -e "    ${CYAN}6.${RESET} ${ICON_EXIT} Выйти из скрипта"
     draw_bottom_border
-    echo -е "${CYАН}╔══════════════════════════════════════════════════════╗${RESET}"
-    echo -е "${CYАН}║${RESET}              ${YELLOW}Введите свой выбор [1-6]:${RESET}           ${CYАН}║${RESET}"
-    echo -е "${CYАН}╚══════════════════════════════════════════════════════╝${RESET}"
+    echo -e "${CYAN}╔══════════════════════════════════════════════════════╗${RESET}"
+    echo -e "${CYAN}║${RESET}              ${YELLOW}Введите свой выбор [1-6]:${RESET}           ${CYAN}║${RESET}"
+    echo -e "${CYAN}╚══════════════════════════════════════════════════════╝${RESET}"
     read -p " " choice
 }
 
