@@ -29,7 +29,7 @@ draw_middle_border() {
 }
 
 draw_bottom_border() {
-    echo -е "${CYAN}╚══════════════════════════════════════════════════════════════════════╝${RESET}"
+    echo -e "${CYAN}╚══════════════════════════════════════════════════════════════════════╝${RESET}"
 }
 
 print_telegram_icon() {
@@ -39,14 +39,14 @@ print_telegram_icon() {
 # Логотип и информация
 display_ascii() {
     echo -e "${CYAN}   ____   _  __   ___    ____ _   __   ____ ______   ____   ___    ____${RESET}"
-    echo -е "${CYAN}  /  _/  / |/ /  / _ \\  /  _/| | / /  /  _//_  __/  /  _/  / _ |  / __/${RESET}"
-    echo -е "${CYAN} _/ /   /    /  / // / _/ /  | |/ /  _/ /   / /    _/ /   / __ | _\\ \\  ${RESET}"
-    echo -е "${CYAN}/___/  /_/|_/  /____/ /___/  |___/  /___/  /_/    /___/  /_/ |_|/___/  ${RESET}"
-    echo -е ""
-    echo -е "${YELLOW}Подписывайтесь на Telegram: https://t.me/CryptalikBTC${RESET}"
-    echo -е "${YELLOW}Подписывайтесь на YouTube: https://www.youtube.com/@Cryptalik${RESET}"
-    echo -е "${YELLOW}Здесь про аирдропы и ноды: https://t.me/indivitias${RESET}"
-    echo -е "${YELLOW}Купи мне крипто бутылочку... кефира 😏${RESET} ${MAGENTA} 👉  https://bit.ly/4eBbfIr  👈 ${MAGENTA}"
+    echo -e "${CYAN}  /  _/  / |/ /  / _ \\  /  _/| | / /  /  _//_  __/  /  _/  / _ |  / __/${RESET}"
+    echo -e "${CYAN} _/ /   /    /  / // / _/ /  | |/ /  _/ /   / /    _/ /   / __ | _\\ \\  ${RESET}"
+    echo -e "${CYAN}/___/  /_/|_/  /____/ /___/  |___/  /___/  /_/    /___/  /_/ |_|/___/  ${RESET}"
+    echo -e ""
+    echo -e "${YELLOW}Подписывайтесь на Telegram: https://t.me/CryptalikBTC${RESET}"
+    echo -e "${YELLOW}Подписывайтесь на YouTube: https://www.youtube.com/@Cryptalik${RESET}"
+    echo -e "${YELLOW}Здесь про аирдропы и ноды: https://t.me/indivitias${RESET}"
+    echo -e "${YELLOW}Купи мне крипто бутылочку... кефира 😏${RESET} ${MAGENTA} 👉  https://bit.ly/4eBbfIr  👈 ${MAGENTA}"
     echo -е ""
     echo -е "${CYAN}Полезные команды:${RESET}"
     echo -е "  - ${YELLOW}Просмотр файлов директории:${RESET} ll"
@@ -149,7 +149,7 @@ show_menu() {
     echo -е "    ${CYAN}6.${RESET} ${ICON_EXIT} Выйти из скрипта"
     draw_bottom_border
     echo -е "${CYAN}╔══════════════════════════════════════════════════════╗${RESET}"
-    echo -е "${CYAN}║${RESET}              ${YELLOW}Введите свой выбор [1-6]:${RESET}           ${CYAN}║${RESET}"
+    echo -е "${CYАН}║${RESET}              ${YELLOW}Введите свой выбор [1-6]:${RESET}           ${CYАН}║${RESET}"
     echo -е "${CYАН}╚══════════════════════════════════════════════════════╝${RESET}"
     read -p " " choice
 }
