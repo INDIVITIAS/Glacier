@@ -75,14 +75,20 @@ install_node() {
     echo -е "Все порты свободны! Сейчас начнется установка...\n"
 
     # Установка Docker, если не установлен
-    if ! command -v docker &> /dev/null; then
-        sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-        sudo systemctl start docker
-        sudo systemctl enable docker
-    fi
+if ! command -v docker &> /dev/null; then
+    sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+    sudo systemctl start docker
+    sudo systemctl enable docker
+fi
 
-    # Перезапуск Docker-демона
-    sudo systemctl restart docker
+# Перезапуск Docker-демона
+sudo systemctl restart docker
+
+# Проверка и создание сети Docker
+if ! docker network ls | grep -q "glacier_network"; then
+    docker network create glacier_network
+fi
+
 
     read -p "Введите ваш приватный ключ кошелька: " priv_key
     echo "PRIVATE_KEY=$priv_key" > .env
