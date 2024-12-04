@@ -50,9 +50,9 @@ display_ascii() {
     echo -e ""
     echo -e "${CYAN}Полезные команды:${RESET}"
     echo -e "  - ${YELLOW}Просмотр файлов директории:${RESET} ll"
-    echo -e "  - ${YELLOW}Вход в директорию:${RESET} cd hyperlane"
+    echo -e "  - ${YELLOW}Вход в директорию:${RESET} cd Glacier"
     echo -e "  - ${YELLOW}Выход из директории:${RESET} cd .."
-    echo -e "  - ${YELLOW}Запуск меню скрипта (не установка) из директории hyperlane:${RESET} bash hyper.sh"
+    echo -e "  - ${YELLOW}Запуск меню скрипта (не установка) из директории Glacier:${RESET} bash gla.sh"
     echo -e ""
 }
 
